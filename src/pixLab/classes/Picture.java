@@ -119,6 +119,28 @@ public class Picture extends SimplePicture
     } 
   }
   
+  public void glitchArt()
+  {
+	  Pixel [][] pixels = this.getPixels2D();
+	  int shiftAmount = (int) (.15 * pixels[0].length);
+	  int width = pixels[0].length;
+	  
+	  for (int row=0; row < pixels.length; row++)
+	  {
+		  Color [] currentColors = new Color[pixels[0].length];
+		  
+		  for (int col = 0; col < pixels[row].length; col++)
+		  {
+			  currentColors[col] = pixels[row][col].getColor();
+		  }
+		  
+		  for (int col = 0; col < pixels[0].length; col++)
+		  {
+			  pixels[row][col].setColor(currentColors[(col + shiftAmount) % width]);
+		  }
+		  
+	  }
+  }
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
   {
